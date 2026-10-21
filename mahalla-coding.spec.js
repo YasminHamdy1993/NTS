@@ -16,11 +16,11 @@ test.describe('فحوصات شاشة ترميز المحلة', () => {
 
         // 2. الانتقال إلى شاشة ترميز المحلة
         console.log('2. Navigating to Mahalla screen...');
-        await page.locator('text="إعدادات النظام"').click();
+        await page.locator('text="إعدادات النظام"').first().click();
         await page.waitForTimeout(1000);
-        await page.locator('text="ترميز التوزيع الجغرافي"').click();
+        await page.locator('text="ترميز التوزيع الجغرافي"').first().click();
         await page.waitForTimeout(1000);
-        await page.locator('text="ترميز المحلة"').click();
+        await page.locator('text="ترميز المحلة"').first().click();
         await page.waitForTimeout(4000);
 
         // 3. التأكد من عنوان الصفحة والرابط
