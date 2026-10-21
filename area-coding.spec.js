@@ -29,7 +29,7 @@ test.describe('فحوصات شاشة ترميز المناطق', () => {
         console.log('Verified: Correct Title and URL for ترميز-المناطق!');
     });
 
-    // 1️⃣ الفحص الأول: الضغط على إضافة بدون اختيار المحافظة والقضاء
+    // 1️⃣ الفحص الأول: الضغط على إضافة بدون تحديد المحافظة والقضاء
     test('1. الضغط على إضافة بدون تحديد المحافظة والقضاء والتأكد من ظهور الأخطاء', async ({ page }) => {
         console.log('--- Test 1: Click Add without selecting province and district ---');
         await page.locator('button:has-text("إضافة")').click();
@@ -44,6 +44,71 @@ test.describe('فحوصات شاشة ترميز المناطق', () => {
 
         await page.screenshot({ path: '1_area_missing_fields_error.png' });
         console.log('Screenshot saved: 1_area_missing_fields_error.png');
+    });
+
+    // 2️⃣ الفحص الثاني: اختيار المحافظة والقضاء ثم إضافة منطقة جديدة بنجاح
+    test('2. اختيار المحافظة والقضاء وإضافة منطقة جديدة وحفظها بنجاح', async ({ page }) => {
+        console.log('--- Test 2: Select Province, District, and Add new Area ---');
+
+        // أ) اختيار المحافظة (مثلاً: بغداد)
+        await page.locator('#P17_SECTION_CODE_lov_btn').click();
+        await page.waitForTimeout(1000);
+        await page.locator('[role="option"]:has-text("بغداد")').click();
+        await page.waitForTimeout(2000);
+
+        // ب) اختيار القضاء-المركز
+        await page.locator('#P17_BRANCH_CODE_lov_btn').click();
+        await page.waitForTimeout(1500);
+        await page.locator('[role="option"]:visible').first().click();
+        await page.waitForTimeout(2000);
+
+        // ج) الضغط على زر إضافة
+        await page.locator('button:has-text("إضافة")').click();
+
+        // د) التعامل مع نافذة الإضافة (iframe)
+        const modal = page.frameLocator('iframe');
+        await modal.locator('#P18_AREA_NAME').waitFor({ state: 'visible', timeout: 10000 });
+
+        // هـ) كتابة اسم منطقة جديدة فريد وحفظها
+        const newAreaName = 'منطقة تجريبية ' + Math.floor(Math.random() * 1000);
+        await modal.locator('#P18_AREA_NAME').fill(newAreaName);
+        await modal.locator('button:has-text("حفظ")').click();
+
+        // و) انتظار إشعار النجاح وأخذ لقطة الشاشة
+        await page.waitForTimeout(3000);
+        await page.screenshot({ path: '2_valid_area_saved.png' });
+        console.log('Screenshot saved: 2_valid_area_saved.png');
+    });
+
+    // 3️⃣ الفحص الثالث: اختيار المحافظة والقضاء ثم ترك اسم المنطقة فارغاً والضغط على حفظ
+    test('3. ترك اسم المنطقة فارغاً والتأكد من رسالة الخطأ', async ({ page }) => {
+        console.log('--- Test 3: Leave Area name empty ---');
+
+        // أ) اختيار المحافظة والقضاء
+        await page.locator('#P17_SECTION_CODE_lov_btn').click();
+        await page.waitForTimeout(1000);
+        await page.locator('[role="option"]:has-text("بغداد")').click();
+        await page.waitForTimeout(2000);
+
+        await page.locator('#P17_BRANCH_CODE_lov_btn').click();
+        await page.waitForTimeout(1500);
+        await page.locator('[role="option"]:visible').first().click();
+        await page.waitForTimeout(2000);
+
+        // ب) الضغط على إضافة
+        await page.locator('button:has-text("إضافة")').click();
+
+        // ج) نافذة الإضافة وترك الحقل فارغاً
+        const modal = page.frameLocator('iframe');
+        await modal.locator('#P18_AREA_NAME').waitFor({ state: 'visible', timeout: 10000 });
+        await modal.locator('button:has-text("حفظ")').click();
+
+        // د) انتظار ظهور رسالة الخطأ داخل الـ Modal
+        await modal.locator('.t-Alert').waitFor({ state: 'visible', timeout: 15000 });
+        await page.waitForTimeout(1000);
+
+        await page.screenshot({ path: '3_area_empty_name_error.png' });
+        console.log('Screenshot saved: 3_area_empty_name_error.png');
     });
 
 });
