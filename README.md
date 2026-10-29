@@ -67,10 +67,29 @@
 | 32 | **ترميز بنود الحافظة** | [portfolio-items-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/portfolio-items-coding.spec.js) | فحص إلزامية اسم البند وعنصر الفواتير، التحقق من قواعد منع التكرار، فحص زر الإغلاق |
 | 33 | **ترميز حالات إيصالات السداد** | [receipt-status-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/receipt-status-coding.spec.js) | فحص إلزامية الاسم، إضافة حالة إيصال سداد جديدة، فحص زر الإلغاء |
 
-#### 7. وحدة ترميز خدمات الزبائن (Customer Services)
+#### 7. وحدة ترميز خدمات الزبائن (Customer Services) - مكتملة 100%
 | # | الشاشة | ملف الفحص | السيناريوهات المغطاة |
 |---|---|---|---|
 | 34 | **ترميز أنواع الشكاوى** | [complaint-types-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/complaint-types-coding.spec.js) | فحص إلزامية اسم الشكوى، إضافة نوع شكوى جديد وتفعيله، فحص زر الإلغاء |
+| 35 | **ترميز إدارات الشكاوى** | [complaint-departments-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/complaint-departments-coding.spec.js) | فحص إلزامية اسم الإدارة، إضافة إدارة شكاوى وتوليد الرمز، فحص زر الإلغاء |
+| 36 | **ترميز أنواع المستندات** | [document-types-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/document-types-coding.spec.js) | فحص إلزامية الاسم، إضافة نوع مستند جديد وتفعيله، فحص زر الإلغاء |
+| 37 | **ترميز الطلبات** | [requests-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/requests-coding.spec.js) | فحص إلزامية الاسم بالعربي والإنجليزي، إضافة نوع طلب جديد، فحص زر الإلغاء |
+| 38 | **ترميز خطوات الطلب** | [request-steps-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/request-steps-coding.spec.js) | فحص إلزامية الاسم بالعربي والإنجليزي، إضافة خطوة طلب جديدة، فحص زر الإلغاء |
+| 39 | **ربط الطلبات بالخطوات** | [request-steps-link-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/request-steps-link-coding.spec.js) | فحص مزامنة القائمة المنسدلة مع الجريد التفاعلي، البحث وتصفية الخطوات، إعادة تعيين الجريد |
+| 40 | **ترميز أسباب استبدال العداد** | [meter-replacement-reasons-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/meter-replacement-reasons-coding.spec.js) | فحص قيود الحروف العربية والإنجليزية حصراً، إضافة سبب استبدال مع التفعيل، فحص زر الإلغاء |
+| 41 | **إعدادات الإشعارات** | [notification-settings.spec.js](file:///c:/Users/Yasmine/Desktop/nts/notification-settings.spec.js) | فحص إلزامية عنوان إشعار التعليق، تعديل وحفظ إعدادات إشعارات الخدمة بنجاح، فحص زر الإلغاء |
+
+#### 8. وحدة ترميز الخدمات المالية (Financial Services) - مكتملة 100%
+| # | الشاشة | ملف الفحص | السيناريوهات المغطاة |
+|---|---|---|---|
+| 42 | **ترميز أنواع أقساط الجدولة** | [scheduling-installment-types-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/scheduling-installment-types-coding.spec.js) | فحص إلزامية اسم القسط، إضافة نوع قسط جدولة جديد وحفظه، فحص زر الإلغاء |
+| 43 | **ترميز الخدمات المضافة** | [additional-services-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/additional-services-coding.spec.js) | فحص إلزامية الاسم والقيمة، إضافة خدمة مضافة مع نوع النشاط، فحص زر الإلغاء |
+
+#### 9. وحدة إعدادات التشغيل الأساسية (Operational Settings) - مكتملة 100%
+| # | الشاشة | ملف الفحص | السيناريوهات المغطاة |
+|---|---|---|---|
+| 44 | **إعدادات التشغيل** | [operational-settings-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/operational-settings-coding.spec.js) | فحص إلزامية الإعدادات بالإنجليزية والعربية والقيمة، إضافة إعداد تشغيل وحفظه، فحص الإلغاء |
+| 45 | **خطوات تشغيل الإصدار** | [release-steps-coding.spec.js](file:///c:/Users/Yasmine/Desktop/nts/release-steps-coding.spec.js) | فحص جدول الخطوات التشغيلية المرجعية الـ 10، البحث والفلترة في التقرير، معاينة التفاصيل وإغلاقها |
 
 ---
 
@@ -89,28 +108,28 @@
 * [Node.js](https://nodejs.org/) (إصدار 18 أو أحدث)
 * الاتصال بشبكة النظام (VPN)
 
-### 1. تشغيل فحص شاشة محددة:
+### 1. تشغيل فحوصات الشاشات الجديدة:
 ```powershell
-# فحص ترميز فئات العملاء
-npx.cmd playwright test customer-categories-coding.spec.js
+# فحص ترميز أسباب استبدال العداد
+npx.cmd playwright test meter-replacement-reasons-coding.spec.js
 
-# فحص ترميز الخزائن
-npx.cmd playwright test safes-coding.spec.js
+# فحص ربط الطلبات بالخطوات
+npx.cmd playwright test request-steps-link-coding.spec.js
 
-# فحص ترميز البنوك
-npx.cmd playwright test banks-coding.spec.js
+# فحص إعدادات الإشعارات
+npx.cmd playwright test notification-settings.spec.js
 
-# فحص ترميز حافظات التوريد
-npx.cmd playwright test portfolios-coding.spec.js
+# فحص ترميز أنواع أقساط الجدولة
+npx.cmd playwright test scheduling-installment-types-coding.spec.js
 
-# فحص ترميز بنود الحافظة
-npx.cmd playwright test portfolio-items-coding.spec.js
+# فحص ترميز الخدمات المضافة
+npx.cmd playwright test additional-services-coding.spec.js
 
-# فحص ترميز حالات إيصالات السداد
-npx.cmd playwright test receipt-status-coding.spec.js
+# فحص إعدادات التشغيل
+npx.cmd playwright test operational-settings-coding.spec.js
 
-# فحص ترميز أنواع الشكاوى
-npx.cmd playwright test complaint-types-coding.spec.js
+# فحص خطوات تشغيل الإصدار
+npx.cmd playwright test release-steps-coding.spec.js
 ```
 
 ### 2. تشغيل الشاشة مع رؤية المتصفح (Headed):
